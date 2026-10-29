@@ -1,0 +1,54 @@
+name: Build and publish versioned addon
+on:
+  push:
+    branches: [main]
+    paths: ['.release.json']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: addon-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate manifest and package installable folders
+        run: |
+          python3 - <<'PY'
+          import pathlib,json,zipfile,re,os
+          root=pathlib.Path('.')
+          cfg=json.loads((root/'.release.json').read_text())
+          assert re.fullmatch(r'v[0-9]+(?:[.][0-9]+)+(?:-CoA)?',cfg['version'])
+          folders=cfg['folders']
+          assert folders and len(folders)==len(set(folders))
+          for name in folders:
+              assert '/' not in name and '\\' not in name and name not in ('.','..')
+              p=root/name
+              assert p.is_dir() and list(p.glob('*.toc')), 'Missing addon or TOC: '+name
+          out=root/'dist';out.mkdir(exist_ok=True)
+          artifact=out/(os.environ['GITHUB_REPOSITORY'].split('/')[-1]+'-'+cfg['version']+'.zip')
+          with zipfile.ZipFile(artifact,'w',zipfile.ZIP_DEFLATED) as z:
+              for name in folders:
+                  for p in sorted((root/name).rglob('*')):
+                      if p.is_file() and p.name not in ('.DS_Store','Thumbs.db'):
+                          z.write(p,p.as_posix())
+          with zipfile.ZipFile(artifact) as z: assert z.testzip() is None
+          with open(os.environ['GITHUB_ENV'],'a') as f:
+              f.write('VERSION='+cfg['version']+'\n')
+              f.write('ASSET='+str(artifact)+'\n')
+              f.write('PRERELEASE='+str(cfg['prerelease']).lower()+'\n')
+          PY
+      - name: Publish release and ZIP
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          args=()
+          if [ "$PRERELEASE" = true ]; then args+=(--prerelease --latest=false); else args+=(--latest); fi
+          if gh release view "$VERSION" >/dev/null 2>&1; then
+            echo "::error::Release already exists; refusing to overwrite it"
+            exit 1
+          fi
+          gh release create "$VERSION" "$ASSET" --target "$GITHUB_SHA" --title "${GITHUB_REPOSITORY#*/} $VERSION" --notes-file RELEASE-NOTES.md "${args[@]}"

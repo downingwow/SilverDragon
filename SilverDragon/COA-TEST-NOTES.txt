@@ -1,0 +1,1 @@
+Experimental scan expansion: focus and additional target units; fix undefined cache event coordinates. Full rare detection, map overlays and missing settings are not yet implemented.

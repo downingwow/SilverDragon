@@ -1,0 +1,8 @@
+Patch 5 experimental:
+- Standalone historical world-map pins with tooltips (no HandyNotes required).
+- Per-rare per-zone sighting metadata in SavedVariables.
+- Existing HandyNotes integration continues to provide accurate minimap pins.
+- Configurable standalone world pins and HandyNotes minimap preference.
+- Existing nameplate, group-target, combat-log and cache detection retained.
+- No claim of guaranteed long-range detection: client visibility limits still apply.
+- Not tested in-game. Back up SavedVariables before installing.

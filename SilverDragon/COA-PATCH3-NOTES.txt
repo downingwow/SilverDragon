@@ -1,0 +1,9 @@
+CoA Patch 3 - targeted improvements, not a complete restoration.
+- Retains Patch 2 nameplate scanner.
+- Saves confirmed nameplate sightings into the existing SilverDragon location database.
+- Adds optional combat-log detection for known rares with matching NPC IDs.
+- Prevents missing level/type data from erasing previously learned values.
+- Existing HandyNotes integration displays learned locations if HandyNotes is installed and compatible.
+- No standalone map/minimap overlay implemented; cache scanner remains as in Patch 2.
+- Combat-log coordinates are the player's approximate location, not the rare's precise spawn point.
+- Not tested in-game. Back up SavedVariables before testing.
