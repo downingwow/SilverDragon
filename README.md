@@ -1,6 +1,6 @@
 # SilverDragon-CoA — Rare Scanner and Sighting History
 
-> **[⬇ Download v1.0.1-CoA](https://github.com/downingwow/SilverDragon/releases/download/v1.0.1-CoA/SilverDragon-v1.0.1-CoA.zip)**
+> **[⬇ Download v1.0.1-CoA](https://github.com/uncle-bone/SilverDragon/releases/download/v1.0.1-CoA/SilverDragon-v1.0.1-CoA.zip)**
 
 
 SilverDragon-CoA helps you notice rare creatures and remember where you encountered them in Conquest Reborn. It adapts SilverDragon's rare detection and alerts to Ascension's legacy 3.3.5a client.
@@ -19,7 +19,7 @@ Default Blizzard UI and DragonUI retain their existing presentation. ElvUI styli
 
 ## Installation and settings
 
-Download the ZIP from [Releases](https://github.com/downingwow/SilverDragon/releases). Copy `SilverDragon` directly into `Interface/AddOns`. Retain that exact folder name. Back up `SilverDragon2DB` before upgrading so your history is preserved.
+Download the ZIP from [Releases](https://github.com/uncle-bone/SilverDragon/releases). Copy `SilverDragon` directly into `Interface/AddOns`. Retain that exact folder name. Back up `SilverDragon2DB` before upgrading so your history is preserved.
 
 Use `/silverdragon` to open the configuration. Optional map integrations require their respective addons. This release has not been verified in game.
 
@@ -29,4 +29,4 @@ Original SilverDragon by **Kemayo**, based on upstream v2.3.4-9-gfaa9d93, with t
 
 Target: Ascension Conquest of Azeroth / Conquest Reborn, legacy WoW 3.3.5a (Interface 30300). Source and package checks do not establish live realm compatibility. Report the addon version, UI addons, and full Lua error when filing an issue. Preserve your WTF SavedVariables when updating.
 
-Maintainer: **Uncle Bone** · [GitHub support](https://github.com/downingwow). This is a community-maintained adaptation. Original authors retain their credits; bundled license and third-party attribution notices remain applicable.
+Maintainer: **Uncle Bone** · [GitHub support](https://github.com/uncle-bone). This is a community-maintained adaptation. Original authors retain their credits; bundled license and third-party attribution notices remain applicable.
