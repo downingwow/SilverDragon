@@ -1,5 +1,8 @@
 # SilverDragon-CoA — Rare Scanner and Sighting History
 
+> **[⬇ Download v1.0.1-CoA]( https://github.com/downingwow/SilverDragon/releases/download/v1.0.1-CoA/SilverDragon-v1.0.1-CoA.zip )**
+
+
 SilverDragon-CoA helps you notice rare creatures and remember where you encountered them in Conquest Reborn. It adapts SilverDragon's rare detection and alerts to Ascension's legacy 3.3.5a client.
 
 ## Features
